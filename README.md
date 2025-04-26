@@ -1,2 +1,2 @@
-Frontend : run 'npm run dev' in frontend directory 
-Backend : set your mysql database properties in application.properties and run the main method
+# PAF_IT3030
+Y3.S1 - IT3030 - Programming Applications and Frameworks 
