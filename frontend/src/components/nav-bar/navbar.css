@@ -1,0 +1,56 @@
+/* Navbar animations and effects */
+.nav-link {
+  position: relative;
+  padding: 0.5rem 0;
+  margin: 0 0.5rem;
+}
+
+.nav-link-text {
+  position: relative;
+  z-index: 1;
+}
+
+.nav-link-underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #00d4ff;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover .nav-link-underline {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: #00d4ff !important;
+}
+
+/* Button hover effects */
+.btn-outline-info:hover {
+  background-color: transparent;
+  color: #00d4ff;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.btn-info:hover {
+  background-color: #00a8cc;
+  border-color: #00a8cc;
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.7);
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+  .nav-link {
+    padding: 0.5rem 1rem;
+    margin: 0;
+  }
+  
+  .navbar-nav .btn {
+    margin: 0.5rem 0;
+    display: block;
+    width: 100%;
+  }
+}

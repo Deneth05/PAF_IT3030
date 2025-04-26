@@ -1,0 +1,17 @@
+.star-rating-icon {
+  transition: transform 0.2s;
+}
+
+.star-rating-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Optional: Add animation for selected stars */
+@keyframes starBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+.star-rating-icon:active {
+  animation: starBounce 0.3s;
+}
