@@ -11,6 +11,7 @@ import Login from './components/log-in/login';
 import Register from './components/register/register';
 import LearningPlanForm from './components/Learning-plan/LearningPlanForm';
 import PostCreationForm from './components/SkillPost/PostCreationForm';
+import CommentForm from './components/Comments/CommentForm';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/learning-progress/edit/:id" element={<LearningProgress />} />
                     <Route path="/learning-plan" element={<LearningPlanForm/>} />
                     <Route path="/skill-post/create" element={<PostCreationForm/>} />
+                    <Route path="/comments/create" element={<CommentForm/>} />
 
                     <Route path="/login/" element={<Login />} />
                     <Route path="/register/" element={<Register />} />

@@ -4,9 +4,12 @@ import './index.css'
 import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
 <<<<<<< HEAD
+<<<<<<< HEAD
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 =======
 >>>>>>> Feature/SkillPost
+=======
+>>>>>>> feature/Comments
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
