@@ -10,6 +10,7 @@ import LearningProgressList from './components/learning-progress/learning-progre
 import Login from './components/log-in/login';
 import Register from './components/register/register';
 import LearningPlanForm from './components/Learning-plan/LearningPlanForm';
+import PostCreationForm from './components/SkillPost/PostCreationForm';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
                     <Route path="/learning-porogress" element={<LearningProgressList/>} />
                     <Route path="/learning-progress/edit/:id" element={<LearningProgress />} />
                     <Route path="/learning-plan" element={<LearningPlanForm/>} />
+                    <Route path="/skill-post/create" element={<PostCreationForm/>} />
 
                     <Route path="/login/" element={<Login />} />
                     <Route path="/register/" element={<Register />} />

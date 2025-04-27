@@ -3,19 +3,27 @@ import React from 'react';
 const PostCard = ({ post, onClick }) => {
     return (
         <div className="col-md-4 mb-4">
+<<<<<<< HEAD
             <div className="card h-100" onClick={onClick} style={{ cursor: 'pointer' }}>
+=======
+            <div className="card" onClick={onClick}> {/* On click trigger */}
+>>>>>>> Feature/SkillPost
                 <div className="card-body">
                     <h5 className="card-title">{post.title}</h5>
                     <p className="card-text">{post.description}</p>
                 </div>
+<<<<<<< HEAD
                 <div className="card-footer bg-transparent">
                     <small className="text-muted">Posted on {post.date || 'unknown date'}</small>
                 </div>
+=======
+>>>>>>> Feature/SkillPost
             </div>
         </div>
     );
 };
 
+<<<<<<< HEAD
 const PostsGridView = ({ posts, onPostClick }) => {
     return (
         <div className="container mt-4">
@@ -34,3 +42,6 @@ const PostsGridView = ({ posts, onPostClick }) => {
 };
 
 export default PostsGridView;
+=======
+export default PostCard;
+>>>>>>> Feature/SkillPost
