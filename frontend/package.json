@@ -11,7 +11,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@popperjs/core": "^2.11.8",
     "@tailwindcss/vite": "^4.1.4",
     "axios": "^1.8.4",
@@ -24,15 +23,6 @@
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.4.1",
     "tailwindcss": "^4.1.4"
-=======
-    "axios": "^1.9.0",
-    "bootstrap": "^5.3.5",
-    "react": "^19.0.0",
-    "react-bootstrap": "^2.10.9",
-    "react-dom": "^19.0.0",
-    "react-icons": "^5.5.0",
-    "react-router-dom": "^7.4.1"
->>>>>>> feature/learning-plan
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
