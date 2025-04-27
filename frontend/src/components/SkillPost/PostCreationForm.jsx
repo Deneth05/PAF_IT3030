@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Form, Button, Card, Alert, Container, Spinner, Row, Col, Modal } from 'react-bootstrap';
 import SkillPostService from '../../services/SkillPostAPI/SkillPostService';
 
-// Cloudinary configuration (declared at component level)
+// Cloudinary configuration 
 const CLOUDINARY_CLOUD_NAME = "dtu0zojzx";
 const CLOUDINARY_UPLOAD_PRESET = "ml_default";
 const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/auto/upload`;
