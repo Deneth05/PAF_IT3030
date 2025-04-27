@@ -29,18 +29,17 @@ import {
   FaExternalLinkAlt
 } from 'react-icons/fa';
 import { deleteLearningProgress, getAllProgress } from '../../services/Learning-Progress-Service';
-import { LearningProgress } from '../../types/learningProgress';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './learning-progress-list.css';
 
 const LearningProgressList = () => {
-  const [progressList, setProgressList] = useState<LearningProgress[]>([]);
+  const [progressList, setProgressList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
-  const [filterRating, setFilterRating] = useState<number | null>(null);
-  const [sortField, setSortField] = useState<'createdAt' | 'rating'>('createdAt');
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
+  const [filterRating, setFilterRating] = useState(null);
+  const [sortField, setSortField] = useState('createdAt');
+  const [sortOrder, setSortOrder] = useState('desc');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
   const navigate = useNavigate();
@@ -61,11 +60,11 @@ const LearningProgressList = () => {
     fetchProgress();
   }, []);
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this progress entry?')) {
       try {
-        await deleteLearningProgress(id); // Call the API to delete
-        setProgressList(prev => prev.filter(item => item.id !== id)); // Update UI after successful delete
+        await deleteLearningProgress(id);
+        setProgressList(prev => prev.filter(item => item.id !== id));
       } catch (err) {
         console.error(err);
         setError('Failed to delete progress entry');
@@ -90,14 +89,13 @@ const LearningProgressList = () => {
     }
   });
 
-  // Pagination logic
   const totalPages = Math.ceil(sortedProgress.length / itemsPerPage);
   const paginatedProgress = sortedProgress.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
 
-  const renderRatingStars = (rating: number) => {
+  const renderRatingStars = (rating) => {
     return (
       <div className="star-rating">
         {[1, 2, 3, 4, 5].map((star) => (
@@ -109,8 +107,8 @@ const LearningProgressList = () => {
     );
   };
 
-  const formatDate = (dateString: string) => {
-    const options: Intl.DateTimeFormatOptions = {
+  const formatDate = (dateString) => {
+    const options = {
       year: 'numeric',
       month: 'short',
       day: 'numeric',
@@ -120,13 +118,13 @@ const LearningProgressList = () => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  const getProgressLevel = (rating: number) => {
+  const getProgressLevel = (rating) => {
     if (rating <= 2) return 'Beginner';
     if (rating <= 4) return 'Intermediate';
     return 'Advanced';
   };
 
-  const renderResources = (resources: { link: string }[]) => {
+  const renderResources = (resources) => {
     if (!resources || resources.length === 0) {
       return <small className="text-muted">No resources added</small>;
     }
@@ -174,7 +172,6 @@ const LearningProgressList = () => {
         </Col>
       </Row>
 
-      {/* Filter/Search Bar */}
       <Card className="mb-4 shadow-sm">
         <Card.Body>
           <Row className="g-3">
@@ -303,7 +300,6 @@ const LearningProgressList = () => {
                         progress.description}
                     </Card.Text>
 
-                    {/* Resources Section */}
                     <div className="mt-2">
                       <small className="text-muted fw-bold">Resources:</small>
                       {renderResources(
@@ -311,7 +307,6 @@ const LearningProgressList = () => {
                           ? [{ link: progress.resources }]
                           : progress.resources
                       )}
-
                     </div>
 
                     <div className="mt-3">

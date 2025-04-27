@@ -29,13 +29,13 @@ const LearningProgressForm = () => {
   const [toastMessage, setToastMessage] = useState('');
   const [toastVariant, setToastVariant] = useState<'success' | 'danger'>('success');
 
-  const showSuccessToast = (message: string) => {
+  const showSuccessToast = (message) => {
     setToastMessage(message);
     setToastVariant('success');
     setShowToast(true);
   };
 
-  const showErrorToast = (message: string) => {
+  const showErrorToast = (message) => {
     setToastMessage(message);
     setToastVariant('danger');
     setShowToast(true);

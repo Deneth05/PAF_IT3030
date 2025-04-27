@@ -7,6 +7,8 @@ import Navbar from './components/nav-bar/nav-bar';
 import LearningProgress from './components/learning-progress/learning-progress-form';
 import Footer from './components/footer/footer';
 import LearningProgressList from './components/learning-progress/learning-progress-list';
+import Login from './components/log-in/login';
+import Register from './components/register/register';
 
 function App() {
 
@@ -20,6 +22,10 @@ function App() {
                     <Route path="/create-post" element={<CreatePost />} />
                     <Route path="/learning-porogress" element={<LearningProgressList/>} />
                     <Route path="/learning-progress/edit/:id" element={<LearningProgress />} />
+
+                    <Route path="/login/" element={<Login />} />
+                    <Route path="/register/" element={<Register />} />
+
                 </Routes>
                 <Footer/>
             </Router>

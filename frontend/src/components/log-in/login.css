@@ -1,0 +1,33 @@
+/* Login.css */
+.login-container {
+  max-width: 1200px;
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+}
+
+/* Custom card styling */
+.card {
+  border-radius: 10px;
+  border: none;
+}
+
+/* Input focus styling */
+.form-control:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Button styling */
+.btn-primary {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .card-body {
+    padding: 1.5rem;
+  }
+}

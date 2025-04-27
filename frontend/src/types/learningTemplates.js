@@ -1,5 +1,3 @@
-// src/data/learningTemplates.ts
-
 export const learningTemplates = [
   {
     name: 'Daily Learning',
