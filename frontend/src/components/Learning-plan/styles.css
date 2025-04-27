@@ -1,0 +1,207 @@
+/* Learning Plan Styles */
+.learning-plan-container {
+    padding: 2rem 0;
+  }
+  
+  .plan-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .plan-card .card-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .plan-card .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.75rem;
+  }
+  
+  .plan-card .card-text {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  .plan-card .btn-group {
+    margin-top: auto;
+  }
+  
+  .step-card {
+    background-color: #f8f9fa;
+    border-left: 4px solid #3498db;
+    margin-bottom: 1rem;
+  }
+  
+  .step-card .card-title {
+    color: #2980b9;
+    font-size: 1.1rem;
+  }
+  
+  .step-card .card-text {
+    color: #34495e;
+  }
+  
+  .step-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+  
+  .step-progress {
+    height: 8px;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .step-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .step-buttons .btn {
+    min-width: 40px;
+  }
+  
+  .search-container {
+    position: relative;
+    max-width: 400px;
+    margin-left: 500px;
+  }
+  
+  .search-clear-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #6c757d;
+    cursor: pointer;
+  }
+  
+  .search-clear-btn:hover {
+    color: #495057;
+  }
+  
+  .empty-state {
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .empty-state-icon {
+    font-size: 3rem;
+    color: #adb5bd;
+    margin-bottom: 1rem;
+  }
+  
+  /* Modal Enhancements */
+  .modal-content {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  .modal-header {
+    border-bottom: 1px solid #e9ecef;
+    padding: 1.5rem;
+  }
+  
+  .modal-title {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+  
+  .modal-body {
+    padding: 1.5rem;
+  }
+  
+  .modal-footer {
+    border-top: 1px solid #e9ecef;
+    padding: 1rem 1.5rem;
+  }
+  
+  /* Form Styles */
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+  
+  .form-label {
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-control, .form-select {
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ced4da;
+  }
+  
+  .form-control:focus, .form-select:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  /* Button Enhancements */
+  .btn {
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+  
+  .btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+  }
+  
+  .btn-primary:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+  }
+  
+  .btn-outline-secondary:hover {
+    background-color: #f8f9fa;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .plan-card {
+      margin-bottom: 1.5rem;
+    }
+    
+    .modal-dialog {
+      margin: 0.5rem auto;
+    }
+  }
+  
+  /* Animation for loading state */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }

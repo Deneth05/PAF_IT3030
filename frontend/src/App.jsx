@@ -4,6 +4,7 @@ import Home from './screens/Home';
 import PostDetails from './screens/PostDetails';  // Import PostDetails
 import CreatePost from './screens/CreatePost';
 import { CommentsProvider } from './context/CommentContext';  // Import CommentsProvider
+import LearningPlanForm from './components/Learning-plan/LearningPlanForm';
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/posts/:postId" element={<PostDetails />} /> 
                 <Route path="/create-post" element = {<CreatePost/>}/>
+                <Route path="/learning-plan" element = {<LearningPlanForm />} />
             </Routes>
         </Router>
         </CommentsProvider>
