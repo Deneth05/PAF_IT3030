@@ -1,70 +1,67 @@
 import { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  Button,
-  Alert,
-  Spinner,
-  Card,
-  InputGroup,
-  FormControl,
-} from "react-bootstrap";
-import {
-  FaUser,
-  FaEnvelope,
-  FaLock,
-  FaEye,
-  FaEyeSlash,
-  FaSignInAlt,
-  FaGoogle,
-} from "react-icons/fa";
-import "./Register.css"; // Custom CSS for additional styling
+import axios from "../../api/axiosInstance";
+import './Register.css'; // Create this CSS file for styling
 
 function Register() {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
     email: "",
+    userName: "",
     password: "",
     confirmPassword: "",
+    skills: [{ name: "", level: "beginner" }],
+    termsAccepted: false
   });
+
   const [errors, setErrors] = useState({});
-  const [apiError, setApiError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [validated, setValidated] = useState(false);
-  const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: type === "checkbox" ? checked : value
     });
-    // Clear error when user types
-    if (errors[name]) {
-      setErrors({
-        ...errors,
-        [name]: null,
-      });
-    }
   };
 
-  const validateForm = () => {
+  const handleSkillChange = (index, e) => {
+    const { name, value } = e.target;
+    const skills = [...formData.skills];
+    skills[index][name] = value;
+    setFormData({
+      ...formData,
+      skills
+    });
+  };
+
+  const addSkill = () => {
+    setFormData({
+      ...formData,
+      skills: [...formData.skills, { name: "", level: "beginner" }]
+    });
+  };
+
+  const removeSkill = (index) => {
+    const skills = [...formData.skills];
+    skills.splice(index, 1);
+    setFormData({
+      ...formData,
+      skills
+    });
+  };
+
+  const validate = () => {
     const newErrors = {};
-    
-    if (!formData.firstName.trim()) {
-      newErrors.firstName = "First name is required";
-    }
     
     if (!formData.email) {
       newErrors.email = "Email is required";
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
-      newErrors.email = "Invalid email address";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Email is invalid";
+    }
+    
+    if (!formData.userName) {
+      newErrors.userName = "Username is required";
+    } else if (formData.userName.length < 3) {
+      newErrors.userName = "Username must be at least 3 characters";
     }
     
     if (!formData.password) {
@@ -77,219 +74,182 @@ function Register() {
       newErrors.confirmPassword = "Passwords do not match";
     }
     
+    if (!formData.termsAccepted) {
+      newErrors.termsAccepted = "You must accept the terms and conditions";
+    }
+    
+    // Validate skills
+    formData.skills.forEach((skill, index) => {
+      if (!skill.name) {
+        newErrors[`skill-${index}`] = "Skill name is required";
+      }
+    });
+    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setApiError("");
     
-    const form = e.currentTarget;
-    if (form.checkValidity() === false || !validateForm()) {
-      e.stopPropagation();
-      setValidated(true);
+    if (!validate()) {
       return;
     }
-
+    
+    setIsSubmitting(true);
+    
     try {
-      setLoading(true);
-      await axios.post(
-        "http://localhost:8081/api/auth/register",
-        {
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          password: formData.password,
-        },
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-
-      // Redirect to login with success state
-      navigate("/login", { state: { registrationSuccess: true } });
+      const payload = {
+        email: formData.email,
+        password: formData.password,
+        userName: formData.userName,
+        skillsInterested: formData.skills,
+      };
+      
+      const res = await axios.post("http://localhost:8081/api/auth/register", payload);
+      localStorage.setItem("token", res.data.token);
+      // Redirect or show success message
+      alert("Registration successful! Welcome to our platform.");
     } catch (err) {
-      setLoading(false);
-      if (err.response) {
-        switch (err.response.status) {
-          case 400:
-            setApiError("Validation error. Please check your inputs.");
-            break;
-          case 409:
-            setApiError("Email already exists. Please login instead.");
-            break;
-          default:
-            setApiError("Registration failed. Please try again.");
-        }
-      } else if (err.request) {
-        setApiError("Network error. Please check your connection.");
-      } else {
-        setApiError("An unexpected error occurred.");
+      let errorMessage = "Registration failed!";
+      if (err.response && err.response.data && err.response.data.message) {
+        errorMessage = err.response.data.message;
       }
+      alert(errorMessage);
+    } finally {
+      setIsSubmitting(false);
     }
-  };
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleGoogleRegister = () => {
-    // Redirect to Google OAuth endpoint
-    window.location.href = "http://localhost:8080/api/auth/google";
   };
 
   return (
-    <Container className="register-container">
-      <Row className="justify-content-center align-items-center min-vh-100">
-        <Col md={8} lg={6} xl={5}>
-          <Card className="shadow-sm">
-            <Card.Body className="p-4 p-md-5">
-              <div className="text-center mb-4">
-                <h2 className="fw-bold">Create Account</h2>
-                <p className="text-muted">
-                  Join us to start your learning journey
-                </p>
-              </div>
+    <div className="register-container">
+      <h2>Create Your Account</h2>
+      <form onSubmit={handleSubmit} className="register-form">
 
-              {apiError && (
-                <Alert variant="danger" className="text-center">
-                  {apiError}
-                </Alert>
-              )}
+        <div className="form-group">
+          <label>Email*</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className={errors.email ? "error" : ""}
+          />
+          {errors.email && <span className="error-message">{errors.email}</span>}
+        </div>
 
-              {/* Google Sign Up Button */}
-              <Button
-                variant="outline-danger"
-                className="w-100 mb-4 d-flex align-items-center justify-content-center"
-                onClick={handleGoogleRegister}
+        <div className="form-group">
+          <label>Username*</label>
+          <input
+            type="text"
+            name="userName"
+            value={formData.userName}
+            onChange={handleChange}
+            className={errors.userName ? "error" : ""}
+          />
+          {errors.userName && <span className="error-message">{errors.userName}</span>}
+        </div>
+
+        <div className="form-row">
+          <div className="form-group">
+            <label>Password*</label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className={errors.password ? "error" : ""}
+            />
+            {errors.password && <span className="error-message">{errors.password}</span>}
+          </div>
+          
+          <div className="form-group">
+            <label>Confirm Password*</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              className={errors.confirmPassword ? "error" : ""}
+            />
+            {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
+          </div>
+        </div>
+
+        <div className="skills-section">
+          <label>Skills & Interests</label>
+          {formData.skills.map((skill, index) => (
+            <div key={index} className="skill-row">
+              <input
+                type="text"
+                name="name"
+                placeholder="Skill name"
+                value={skill.name}
+                onChange={(e) => handleSkillChange(index, e)}
+                className={errors[`skill-${index}`] ? "error" : ""}
+              />
+              <select
+                name="level"
+                value={skill.level}
+                onChange={(e) => handleSkillChange(index, e)}
               >
-                <FaGoogle className="me-2" />
-                Sign up with Google
-              </Button>
-
-              <div className="divider d-flex align-items-center mb-4">
-                <div className="divider-line"></div>
-                <span className="px-3 text-muted">or</span>
-                <div className="divider-line"></div>
-              </div>
-
-              <Form noValidate validated={validated} onSubmit={handleSubmit}>
-
-                <Form.Group className="mb-3" controlId="formEmail">
-                  <Form.Label>Email address</Form.Label>
-                  <InputGroup hasValidation>
-                    <InputGroup.Text>
-                      <FaEnvelope />
-                    </InputGroup.Text>
-                    <FormControl
-                      type="email"
-                      placeholder="Enter email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      isInvalid={!!errors.email}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {errors.email}
-                    </Form.Control.Feedback>
-                  </InputGroup>
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formPassword">
-                  <Form.Label>Password</Form.Label>
-                  <InputGroup hasValidation>
-                    <InputGroup.Text>
-                      <FaLock />
-                    </InputGroup.Text>
-                    <FormControl
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Password"
-                      name="password"
-                      value={formData.password}
-                      onChange={handleChange}
-                      required
-                      isInvalid={!!errors.password}
-                    />
-                    <Button
-                      variant="outline-secondary"
-                      onClick={togglePasswordVisibility}
-                    >
-                      {showPassword ? <FaEyeSlash /> : <FaEye />}
-                    </Button>
-                    <Form.Control.Feedback type="invalid">
-                      {errors.password}
-                    </Form.Control.Feedback>
-                  </InputGroup>
-                  <Form.Text className="text-muted">
-                    At least 8 characters
-                  </Form.Text>
-                </Form.Group>
-
-                <Form.Group className="mb-4" controlId="formConfirmPassword">
-                  <Form.Label>Confirm Password</Form.Label>
-                  <InputGroup hasValidation>
-                    <InputGroup.Text>
-                      <FaLock />
-                    </InputGroup.Text>
-                    <FormControl
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Confirm password"
-                      name="confirmPassword"
-                      value={formData.confirmPassword}
-                      onChange={handleChange}
-                      required
-                      isInvalid={!!errors.confirmPassword}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {errors.confirmPassword}
-                    </Form.Control.Feedback>
-                  </InputGroup>
-                </Form.Group>
-
-              
-
-                <Button
-                  variant="primary"
-                  type="submit"
-                  className="w-100 mb-3"
-                  disabled={loading}
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+                <option value="expert">Expert</option>
+              </select>
+              {formData.skills.length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => removeSkill(index)}
+                  className="remove-skill"
                 >
-                  {loading ? (
-                    <>
-                      <Spinner
-                        as="span"
-                        animation="border"
-                        size="sm"
-                        role="status"
-                        aria-hidden="true"
-                        className="me-2"
-                      />
-                      Creating account...
-                    </>
-                  ) : (
-                    <>
-                      <FaSignInAlt className="me-2" />
-                      Sign Up
-                    </>
-                  )}
-                </Button>
+                  ×
+                </button>
+              )}
+              {errors[`skill-${index}`] && (
+                <span className="error-message">{errors[`skill-${index}`]}</span>
+              )}
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={addSkill}
+            className="add-skill"
+          >
+            + Add Skill
+          </button>
+        </div>
 
-                <div className="text-center mt-3">
-                  <p className="text-muted">
-                    Already have an account?{" "}
-                    <a href="/login" className="text-decoration-none">
-                      Sign in
-                    </a>
-                  </p>
-                </div>
-              </Form>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+        <div className="form-group terms">
+          <label>
+            <input
+              type="checkbox"
+              name="termsAccepted"
+              checked={formData.termsAccepted}
+              onChange={handleChange}
+              className={errors.termsAccepted ? "error" : ""}
+            />
+            I agree to the Terms and Conditions and Privacy Policy*
+          </label>
+          {errors.termsAccepted && (
+            <span className="error-message">{errors.termsAccepted}</span>
+          )}
+        </div>
+
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="submit-btn"
+        >
+          {isSubmitting ? "Registering..." : "Create Account"}
+        </button>
+
+        <div className="login-link">
+          Already have an account? <a href="/login">Log in</a>
+        </div>
+      </form>
+    </div>
   );
 }
 

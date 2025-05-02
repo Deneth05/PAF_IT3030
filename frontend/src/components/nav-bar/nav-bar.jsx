@@ -82,7 +82,7 @@ const Navbar = () => {
             <li className="nav-item mx-2">
               <Link 
                 className="nav-link position-relative" 
-                to="/learning-progress"
+                to="/learning-porogress"
                 style={{
                   fontWeight: 500,
                   transition: 'all 0.3s ease'
@@ -95,7 +95,7 @@ const Navbar = () => {
             <li className="nav-item mx-2">
               <Link 
                 className="nav-link position-relative" 
-                to="/learning-plans"
+                to="/learning-plan"
                 style={{
                   fontWeight: 500,
                   transition: 'all 0.3s ease'
