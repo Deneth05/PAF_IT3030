@@ -1,16 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Form, Button, Card, Container, Row, Col, Alert, Spinner, ListGroup, InputGroup, Toast, ToastContainer } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-datepicker/dist/react-datepicker.css';
 import { FaLightbulb, FaPlus, FaTrash } from 'react-icons/fa';
 import { learningTemplates } from '../../types/learningTemplates';
-import { createLearningProgress, getProgressById, updateLearningProgress } from '../../services/Learning-Progress-Service';
+import { createLearningProgress } from '../../services/Learning-Progress-Service';
 
 const LearningProgressForm = () => {
-  const { id } = useParams();
-  const isEditMode = Boolean(id);
-
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -19,14 +15,12 @@ const LearningProgressForm = () => {
     resources: [{ link: '' }]
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoadingData, setIsLoadingData] = useState(false);
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
   const [showTemplates, setShowTemplates] = useState(false);
   const navigate = useNavigate();
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
-  const [toastVariant, setToastVariant] = useState<'success' | 'danger'>('success');
+  const [toastVariant, setToastVariant] = useState('success');
 
   const showSuccessToast = (message) => {
     setToastMessage(message);
@@ -39,34 +33,6 @@ const LearningProgressForm = () => {
     setToastVariant('danger');
     setShowToast(true);
   };
-
-  useEffect(() => {
-    if (isEditMode && id) {
-      const fetchProgressData = async () => {
-        try {
-          setIsLoadingData(true);
-          const response = await getProgressById(id);
-          if (response) {
-            setFormData({
-              title: response.title,
-              description: response.description,
-              rating: Number(response.rating) || 0,
-              createdAt: new Date(response.createdAt),
-              resources: response.resources?.length ?
-                response.resources :
-                [{ link: '' }]
-            });
-          }
-        } catch (err) {
-          setError(err.response?.data?.message || err.message || 'Failed to load progress data');
-        } finally {
-          setIsLoadingData(false);
-        }
-      };
-
-      fetchProgressData();
-    }
-  }, [id, isEditMode]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -124,34 +90,19 @@ const LearningProgressForm = () => {
         resources: formData.resources.filter(resource => resource.link.trim() !== '')
       };
 
-      if (isEditMode) {
-        await updateLearningProgress(id, progressData);
-        showSuccessToast('Learning progress updated successfully!');
-      } else {
-        await createLearningProgress(progressData);
-        showSuccessToast('Learning progress created successfully!');
-      }
+      await createLearningProgress(progressData);
+      showSuccessToast('Learning progress created successfully!');
 
       setTimeout(() => {
         navigate('/learning-progress');
       }, 1500);
     } catch (err) {
-      setError(err.response?.data?.message || err.message ||
-        (isEditMode ? 'Failed to update learning progress' : 'Failed to create learning progress'));
+      setError(err.response?.data?.message || err.message || 'Failed to create learning progress');
       showErrorToast(err.response?.data?.message || err.message || 'An error occurred');
     } finally {
       setIsLoading(false);
     }
   };
-
-  if (isLoadingData) {
-    return (
-      <Container className="py-5 text-center">
-        <Spinner animation="border" variant="primary" />
-        <p className="mt-3">Loading learning progress data...</p>
-      </Container>
-    );
-  }
 
   return (
     <Container className="py-5">
@@ -173,51 +124,42 @@ const LearningProgressForm = () => {
         <Col md={8} lg={6}>
           <Card className="shadow-sm">
             <Card.Header className="bg-dark text-white">
-              <h3 className="mb-0">
-                {isEditMode ? 'Edit Learning Progress' : 'Tell us about your learning progress'}
-              </h3>
+              <h3 className="mb-0">Tell us about your learning progress</h3>
             </Card.Header>
             <Card.Body>
               {error && <Alert variant="danger">{error}</Alert>}
-              {success && (
-                <Alert variant="success">
-                  {success} Redirecting...
-                </Alert>
-              )}
 
-              {!isEditMode && (
-                <div className="mb-4">
-                  <Button
-                    variant="outline-primary"
-                    onClick={() => setShowTemplates(!showTemplates)}
-                    className="d-flex align-items-center"
-                  >
-                    <FaLightbulb className="me-2" />
-                    {showTemplates ? 'Hide Templates' : 'Show Templates'}
-                  </Button>
+              <div className="mb-4">
+                <Button
+                  variant="outline-primary"
+                  onClick={() => setShowTemplates(!showTemplates)}
+                  className="d-flex align-items-center"
+                >
+                  <FaLightbulb className="me-2" />
+                  {showTemplates ? 'Hide Templates' : 'Show Templates'}
+                </Button>
 
-                  {showTemplates && (
-                    <Card className="mt-3">
-                      <Card.Header>Select a Template</Card.Header>
-                      <ListGroup variant="flush">
-                        {learningTemplates.map((template, index) => (
-                          <ListGroup.Item
-                            key={index}
-                            action
-                            onClick={() => applyTemplate(template)}
-                            className="d-flex justify-content-between align-items-center"
-                          >
-                            <span>{template.name}</span>
-                            <div>
-                              Rating: {template.rating || 0}/5
-                            </div>
-                          </ListGroup.Item>
-                        ))}
-                      </ListGroup>
-                    </Card>
-                  )}
-                </div>
-              )}
+                {showTemplates && (
+                  <Card className="mt-3">
+                    <Card.Header>Select a Template</Card.Header>
+                    <ListGroup variant="flush">
+                      {learningTemplates.map((template, index) => (
+                        <ListGroup.Item
+                          key={index}
+                          action
+                          onClick={() => applyTemplate(template)}
+                          className="d-flex justify-content-between align-items-center"
+                        >
+                          <span>{template.name}</span>
+                          <div>
+                            Rating: {template.rating || 0}/5
+                          </div>
+                        </ListGroup.Item>
+                      ))}
+                    </ListGroup>
+                  </Card>
+                )}
+              </div>
 
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
@@ -307,10 +249,10 @@ const LearningProgressForm = () => {
                           aria-hidden="true"
                           className="me-2"
                         />
-                        {isEditMode ? 'Updating...' : 'Saving...'}
+                        Saving...
                       </>
                     ) : (
-                      isEditMode ? 'Update Learning Progress' : 'Save Learning Progress'
+                      'Save Learning Progress'
                     )}
                   </Button>
                 </div>

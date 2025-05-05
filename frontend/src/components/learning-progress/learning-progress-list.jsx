@@ -157,9 +157,9 @@ const LearningProgressList = () => {
         <Col>
           <h2 className="d-flex align-items-center">
             <FaChartLine className="me-2" />
-            My Learning Progress
+            Learning Progresses
           </h2>
-          <p className="text-muted">Track and review your learning journey</p>
+          <p className="text-muted">Track and review the learning journey</p>
         </Col>
         <Col xs="auto">
           <Button

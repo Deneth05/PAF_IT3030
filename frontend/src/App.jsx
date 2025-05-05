@@ -11,6 +11,7 @@ import Login from './components/log-in/login';
 import Register from './components/register/register';
 import LearningPlanForm from './components/Learning-plan/LearningPlanForm';
 import Profile from './components/Profile/Profile'
+import SkillSharePostForm from './components/skill-posts/SkillSharePostForm';
 
 function App() {
 
@@ -28,7 +29,8 @@ function App() {
                     <Route path="/profile" element={<Profile/>}/>
                     <Route path="/login/" element={<Login />} />
                     <Route path="/register/" element={<Register />} />
-
+                    <Route path="/SkillSharePost/new" element={<SkillSharePostForm/>}/>
+                    <Route path="/create" element={<CreatePost/>}/>
                 </Routes>
                 <Footer/>
             </Router>
