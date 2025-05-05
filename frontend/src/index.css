@@ -1,1 +1,23 @@
 @import "tailwindcss";
+.home-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.posts-list {
+  margin-top: 20px;
+}
+
+.post-card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.post-card h2 {
+  margin-top: 0;
+  color: #333;
+}

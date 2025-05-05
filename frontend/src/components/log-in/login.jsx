@@ -29,7 +29,7 @@ function Login() {
     e.preventDefault();
     setError("");
     const form = e.currentTarget;
-    
+
     if (form.checkValidity() === false) {
       e.stopPropagation();
       setValidated(true);
@@ -48,15 +48,20 @@ function Login() {
       );
 
       // Handle response based on your API structure
-      const { token, user } = response.data;
-      
+      // const { token, user } = response.data;
+
       // Store token securely
+      // localStorage.setItem("token", token);
+      // localStorage.setItem("user", JSON.stringify(user));
+
+      // // Redirect to dashboard or home page
+      // navigate("/profile");
+
+      const token = response.data; // plain string
       localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
-      
-      // Redirect to dashboard or home page
-      navigate("/dashboard");
-      
+      navigate("/profile");
+
+
     } catch (err) {
       setLoading(false);
       if (err.response) {
