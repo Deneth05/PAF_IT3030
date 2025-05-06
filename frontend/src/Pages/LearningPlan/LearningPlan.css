@@ -556,3 +556,20 @@
 .delete-btn:hover {
   background-color: #c0392b;
 }
+
+.learning-plan-steps {
+  margin-top: 15px;
+}
+
+.learning-plan-steps ol {
+  padding-left: 20px;
+}
+
+.learning-plan-steps li {
+  margin-bottom: 10px;
+}
+
+.step-description {
+  margin-left: 20px;
+  color: #555;
+}

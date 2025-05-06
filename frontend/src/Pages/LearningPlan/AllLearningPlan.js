@@ -3,12 +3,14 @@ import axios from 'axios';
 import { FaPen, FaUserCircle } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import './LearningPlan.css';
-import NavBar from '../../Components/NavBar/NavBar'
+import NavBar from '../../Components/NavBar/NavBar';
+
 function AllLearningPlan() {
   const [posts, setPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
   const navigate = useNavigate();
   const userType = localStorage.getItem('userType');
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -31,10 +33,9 @@ function AllLearningPlan() {
   return (
     <div>
       <NavBar />
-      <div className="LPost-container_new ">
+      <div className="LPost-container_new">
         <div className="progress-header">
           <h1>Learning Plan</h1>
-
         </div>
         <div className='create_btn' onClick={() => (window.location.href = '/addLeariningPlan')}>
           <FaPen />
@@ -61,7 +62,24 @@ function AllLearningPlan() {
                   <h3 className="progress-title">{post.title}</h3>
                   <div className="LPost-content-section">
                     <div className="LPost-content-flow">
-                    <p className="progress-description">{post.description}</p>
+                      {/* Display Steps */}
+                      {post.steps && post.steps.length > 0 && (
+                        <div className="learning-plan-steps">
+                          <h4>Learning Steps:</h4>
+                          <ol>
+                            {post.steps.map((step, index) => (
+                              <li key={index}>
+                                <strong>{step.heading || `Step ${index + 1}`}</strong>
+                                {step.description && (
+                                  <div className="step-description">
+                                    <p>{step.description}</p>
+                                  </div>
+                                )}
+                              </li>
+                            ))}
+                          </ol>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
