@@ -1,0 +1,328 @@
+/* Main Container */
+.pro-learning-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.pro-learning-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.pro-learning-header h2 {
+  color: #000080;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.pro-learning-header p {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+/* Form Styles */
+.pro-learning-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pro-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pro-form-group label {
+  font-size: 0.9rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+.pro-form-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.pro-form-input:focus {
+  outline: none;
+  border-color: #000080;
+  box-shadow: 0 0 0 3px rgba(0, 33, 71, 0.1);
+}
+
+.pro-form-textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  min-height: 100px;
+  resize: vertical;
+  transition: all 0.3s ease;
+}
+
+.pro-form-textarea:focus {
+  outline: none;
+  border-color: #000080;
+  box-shadow: 0 0 0 3px rgba(0, 33, 71, 0.1);
+}
+
+/* Date Inputs Container */
+.pro-date-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* Button Styles */
+.pro-submit-btn {
+  background-color: #000080;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  width: 100%;
+  align-self: flex-end;
+}
+
+.pro-submit-btn:hover {
+  background-color: #003366;
+  transform: translateY(-2px);
+}
+
+.pro-submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pro-learning-container {
+    padding: 1.5rem;
+  }
+
+  .pro-date-inputs {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+/* Main Container */
+.progress-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.progress-header {
+  margin-bottom: 2rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progress-header h1 {
+  color: #000080;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.rec_btn {
+  background-color: #000080;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.progress-header p {
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+/* Progress Grid */
+.progress-grid {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Progress Card */
+.progress-card {
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 370px;
+}
+
+/* Card Header */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 10px 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #000080;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #4b4c4f;
+}
+
+/* Card Body */
+.card-body {
+  padding: 1.5rem;
+}
+
+.progress-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2a2b2b;
+  margin-bottom: 0.5rem;
+}
+.progress-templt {
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  text-align: end;
+  font-weight: 500;
+  font-size: 17px;
+  text-transform: uppercase;
+}
+.progress-description {
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.progress-feedback {
+  font-style: italic;
+  color: #6b7280;
+  padding: 1rem;
+  background-color: #f9fafb;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+}
+
+/* Date Section */
+.date-section {
+  display: flex;
+  justify-content: space-between;
+  color: #6b7280;
+  font-size: 0.9rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.date-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.date-label {
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #6b7280;
+  grid-column: 1 / -1;
+}
+/* Card Actions */
+.card-actions {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+.create_btn {
+  color: #e7eff7;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  position: fixed;
+  background-color: #000080;
+  right: 50px;
+  bottom: 50px;
+  font-size: 18px;
+  border: 1px solid #000080;
+}
+.edit-btn,
+.delete-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.edit-btn {
+  background-color: #000080;
+  color: white;
+  border: 1px solid #000080;
+}
+
+.edit-btn:hover {
+  background-color: #003366;
+  transform: translateY(-1px);
+}
+
+.delete-btn {
+  background-color: white;
+  color: #dc2626;
+  border: 1px solid #dc2626;
+}
+
+.delete-btn:hover {
+  background-color: #fef2f2;
+  transform: translateY(-1px);
+}

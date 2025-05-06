@@ -1,0 +1,558 @@
+/* Main Container */
+.LPost-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.LPost-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.LPost-header h2 {
+  color: #000080;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.LPost-header p {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+/* Form Styles */
+.LPost-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.LPost-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.LPost-form-group label {
+  font-size: 0.9rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+.LPost-form-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.LPost-form-input:focus {
+  outline: none;
+  border-color: #000080;
+  box-shadow: 0 0 0 3px rgba(0, 33, 71, 0.1);
+}
+
+.LPost-form-textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  resize: vertical;
+  transition: all 0.3s ease;
+}
+
+.LPost-form-textarea:focus {
+  outline: none;
+  border-color: #000080;
+  box-shadow: 0 0 0 3px rgba(0, 33, 71, 0.1);
+}
+
+/* Button Styles */
+.LPost-submit-btn {
+  background-color: #000080;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  align-self: flex-end;
+}
+
+.LPost-submit-btn:hover {
+  background-color: #003366;
+  transform: translateY(-2px);
+}
+
+.LPost-submit-btn:active {
+  transform: translateY(0);
+}
+/* Main Container */
+.LPost-container_new {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.LPost-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.LPost-header h1 {
+  color: #000080;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.LPost-header p {
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+/* Posts Grid */
+.LPost-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Post Card */
+.LPost-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+}
+
+/* Card Header */
+.LPost-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.LPost-add-btn {
+  background-color: #003366;
+  color: white;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 0;
+  font-weight: 500;
+  font-size: 16px;
+  width: 150px;
+}
+.LPost-delete-btn {
+  background-color: red;
+  color: white;
+  border: 1px solid red;
+  font-size: 15px;
+  width: 30px;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+}
+.LPost-user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.skil_card_dis {
+  width: 100%;
+  background-color: #f6f5f5;
+  color: #000080;
+  border-radius: 2px;
+  padding: 8px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.progress-date {
+  color: #6b7280;
+  font-size: 0.85rem;
+  font-weight: 400;
+  margin-top: 3px;
+  font-style: italic;
+}
+.LPost-user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #000080;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.LPost-user-name {
+  font-weight: 600;
+  color: #000000;
+}
+
+.LPost-date {
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+/* Card Body */
+.LPost-card-body {
+  padding: 1.5rem;
+}
+
+.LPost-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000080;
+  margin-bottom: 1rem;
+}
+
+.LPost-content-label {
+  font-weight: 600;
+  color: #374151;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+.LPost-content-flow {
+  width: 100%;
+  display: flex;
+  gap: 2px;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+  padding-top: 10px;
+}
+.LPost-content-flow-from {
+  width: 100%;
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  width: 100%;
+  padding-top: 10px;
+}
+.LPost-content-text {
+  color: #022547;
+  background-color: #133d9035;
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #022547;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+.LPost-arrow{
+  font-size: 38px;
+  color: #000080;
+}
+
+/* Empty State */
+.LPost-empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #6b7280;
+  grid-column: 1 / -1;
+}
+
+/* Edit Button */
+.LPost-edit-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #000080;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.LPost-edit-btn:hover {
+  background-color: rgba(0, 33, 71, 0.1);
+}
+
+
+
+.learning-plan-page {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.learning-plan-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.learning-plan-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.learning-plan-header h2 {
+  font-size: 2rem;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #718096;
+  font-size: 1rem;
+}
+
+.learning-plan-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.form-input, .form-textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus, .form-textarea:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+}
+
+.form-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.steps-section {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1.5rem;
+}
+
+.steps-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.steps-header h3 {
+  font-size: 1.25rem;
+  color: #2d3748;
+}
+
+.add-step-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #4299e1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.add-step-btn:hover {
+  background-color: #3182ce;
+}
+
+.step-card {
+  background: #f7fafc;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #e2e8f0;
+}
+
+.step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.step-number {
+  font-weight: 600;
+  color: #4299e1;
+}
+
+.step-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: #718096;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn:hover {
+  color: #2d3748;
+  background-color: #edf2f7;
+}
+
+.icon-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.delete-btn:hover {
+  color: #e53e3e;
+  background-color: #fff5f5;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submit-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #48bb78;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #38a169;
+}
+
+
+.learning-plan-steps {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.learning-plan-steps h4 {
+  margin-bottom: 15px;
+  color: #2c3e50;
+  font-size: 1.1rem;
+}
+
+.learning-plan-steps ol {
+  padding-left: 25px;
+  margin: 0;
+}
+
+.learning-plan-steps li {
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.learning-plan-steps li strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #3498db;
+  font-size: 1rem;
+}
+
+.step-description {
+  padding-left: 10px;
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.edit-btn, .delete-btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.edit-btn {
+  background-color: #3498db;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #2980b9;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
